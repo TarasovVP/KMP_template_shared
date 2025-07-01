@@ -5,10 +5,10 @@ plugins {
 }
 
 android {
-    namespace = "com.vnteam.kmptemplate.android"
+    namespace = "com.tarasovvp.kmptemplate.android"
     compileSdk = 35
     defaultConfig {
-        applicationId = "com.vnteam.kmptemplate.android"
+        applicationId = "com.tarasovvp.kmptemplate.android"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

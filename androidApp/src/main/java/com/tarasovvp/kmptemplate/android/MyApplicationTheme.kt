@@ -1,4 +1,4 @@
-package com.vnteam.kmptemplate.android
+package com.tarasovvp.kmptemplate.android
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape

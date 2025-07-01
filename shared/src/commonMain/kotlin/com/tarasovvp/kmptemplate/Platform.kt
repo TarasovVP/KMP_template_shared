@@ -1,4 +1,4 @@
-package com.vnteam.kmptemplate
+package com.tarasovvp.kmptemplate
 
 interface Platform {
     val name: String

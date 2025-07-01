@@ -38,7 +38,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.vnteam.kmptemplate"
+    namespace = "com.tarasovvp.kmptemplate"
     compileSdk = 35
     defaultConfig {
         minSdk = 24
