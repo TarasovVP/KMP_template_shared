@@ -15,7 +15,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -24,6 +24,16 @@ kotlin {
         it.binaries.framework {
             baseName = "shared"
             isStatic = true
+        }
+    }
+
+    jvm {
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_1_8)
+                }
+            }
         }
     }
 
