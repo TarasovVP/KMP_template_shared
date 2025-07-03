@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JsModuleKind
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -36,7 +37,9 @@ kotlin {
             }
         }
     }
-
+    js(IR) {
+        useCommonJs()
+    }
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
