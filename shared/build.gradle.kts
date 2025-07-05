@@ -28,15 +28,7 @@ kotlin {
         }
     }
 
-    jvm {
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_1_8)
-                }
-            }
-        }
-    }
+    jvm ()
     js(IR) {
         useCommonJs()
     }
