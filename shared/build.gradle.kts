@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JsModuleKind
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -30,7 +29,9 @@ kotlin {
 
     jvm ()
     js(IR) {
+        browser()
         useCommonJs()
+        binaries.executable()
     }
     sourceSets {
         commonMain.dependencies {
