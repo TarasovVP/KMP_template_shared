@@ -15,7 +15,6 @@ kotlin {
             }
         }
     }
-
     listOf(
         iosX64(),
         iosArm64(),
@@ -26,13 +25,11 @@ kotlin {
             isStatic = true
         }
     }
-
-    jvm ()
+    jvm()
     js(IR) {
-        browser()
-        useCommonJs()
         binaries.executable()
     }
+
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
