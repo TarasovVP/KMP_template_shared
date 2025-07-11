@@ -1,17 +1,21 @@
 package com.tarasovvp.kmptemplate
 
-import kotlinx.datetime.*
-import kotlinx.datetime.format.*
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.format
+import kotlinx.datetime.toLocalDateTime
+import kotlin.time.ExperimentalTime
 
 class Greeting {
     private val platform: Platform = getPlatform()
 
+    @OptIn(ExperimentalTime::class)
     fun greet(): String {
-        val currentDateTime = Clock.System.now()
+        val currentDateTime = kotlin.time.Clock.System.now()
             .toLocalDateTime(TimeZone.currentSystemDefault())
 
         val formatter = LocalDateTime.Format {
-            dayOfMonth()
+            day()
             chars("-")
             monthNumber()
             chars("-")
@@ -23,6 +27,6 @@ class Greeting {
         }
 
         val formattedDateTime = currentDateTime.format(formatter)
-        return "Hello, ${platform.name}! Now is $formattedDate"
+        return "Hello, ${platform.name}! Now is $formattedDateTime"
     }
 }
