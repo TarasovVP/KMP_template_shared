@@ -9,8 +9,13 @@ import kotlin.time.ExperimentalTime
 class Greeting {
     private val platform: Platform = getPlatform()
 
-    @OptIn(ExperimentalTime::class)
     fun greet(): String {
+        val formattedDateTime = formattedDateTime()
+        return "Hello, ${platform.name}! Now is $formattedDateTime"
+    }
+
+    @OptIn(ExperimentalTime::class)
+    fun formattedDateTime(): String {
         val currentDateTime = kotlin.time.Clock.System.now()
             .toLocalDateTime(TimeZone.currentSystemDefault())
 
@@ -26,7 +31,6 @@ class Greeting {
             minute()
         }
 
-        val formattedDateTime = currentDateTime.format(formatter)
-        return "Hello, ${platform.name}! Now is $formattedDateTime"
+        return currentDateTime.format(formatter)
     }
 }
