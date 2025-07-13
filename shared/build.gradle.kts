@@ -27,7 +27,14 @@ kotlin {
     }
     jvm()
     js(IR) {
-        binaries.executable()
+        nodejs {
+            testTask {
+                useMocha {
+                    timeout = "30s"
+                }
+            }
+            binaries.executable()
+        }
     }
 
     sourceSets {
@@ -42,7 +49,7 @@ kotlin {
 
 android {
     namespace = "com.tarasovvp.kmptemplate"
-    compileSdk = 36
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }
