@@ -28,11 +28,6 @@ kotlin {
     jvm()
     js(IR) {
         nodejs {
-            testTask {
-                useMocha {
-                    timeout = "30s"
-                }
-            }
             binaries.executable()
         }
     }
