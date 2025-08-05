@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -30,16 +29,6 @@ kotlin {
     js(IR) {
         nodejs {
             binaries.executable()
-        }
-    }
-
-    sourceSets {
-        commonMain.dependencies {
-            implementation(libs.kotlinx.datetime)
-            implementation(libs.kotlinx.serialization)
-        }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
         }
     }
 }
