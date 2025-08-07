@@ -1,5 +1,3 @@
-package com.tarasovvp.kmptemplate
-
 import platform.UIKit.UIDevice
 
 class IOSPlatform: Platform {

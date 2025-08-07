@@ -1,5 +1,3 @@
-package com.tarasovvp.kmptemplate
-
 class Greeting {
     private val platform: Platform = getPlatform()
 
