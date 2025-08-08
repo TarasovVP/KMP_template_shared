@@ -27,12 +27,14 @@ kotlin {
     }
 
     sourceSets {
-
+        commonMain.dependencies {
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
+        }
     }
 }
 
 android {
-    namespace = "com.kmp.template"
+    namespace = "com.tarasovvp.kmptemplate"
     compileSdk = 36
     defaultConfig {
         minSdk = 24

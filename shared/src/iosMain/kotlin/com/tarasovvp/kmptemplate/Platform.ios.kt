@@ -1,7 +1,9 @@
+package com.tarasovvp.kmptemplate
+
 import platform.UIKit.UIDevice
 
-class IOSPlatform: Platform {
+class IOSPlatformHelper: PlatformHelper {
     override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
 }
 
-actual fun getPlatform(): Platform = IOSPlatform()
+actual fun getPlatform(): PlatformHelper = IOSPlatformHelper()
