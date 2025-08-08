@@ -1,20 +1,12 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    id("org.jetbrains.kotlin.multiplatform") version "2.2.0"
+    id("com.android.library") version "8.11.1"
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_1_8)
-                }
-            }
-        }
-    }
+    // Android
+    androidTarget()
+    // iOS
     listOf(
         iosX64(),
         iosArm64(),
@@ -25,22 +17,24 @@ kotlin {
             isStatic = true
         }
     }
+    // Desktop
     jvm()
+    // Web
     js(IR) {
         browser {
             binaries.executable()
         }
     }
+
+    sourceSets {
+
+    }
 }
 
 android {
-    namespace = "com.tarasovvp.kmptemplate"
+    namespace = "com.kmp.template"
     compileSdk = 36
     defaultConfig {
         minSdk = 24
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
