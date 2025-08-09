@@ -1,7 +1,7 @@
 package com.tarasovvp.kmptemplate
 
 interface PlatformHelper {
-    val name: String
+    val platformIdentifier: String
 }
 
 expect fun getPlatform(): PlatformHelper

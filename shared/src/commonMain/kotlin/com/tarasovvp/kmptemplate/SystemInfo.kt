@@ -5,8 +5,10 @@ class SystemInfo {
     private val dateHelper: DateHelper = DateHelper()
 
     fun getInfo(): String {
-        return "Hello!\n" +
-                "App opens in ${platformHelper.name}\n" +
-                "Current date: ${dateHelper.getCurrentDate()}"
+        return """
+            Hello!
+            Platform: ${platformHelper.platformIdentifier}
+            Date: ${dateHelper.getCurrentDate()}
+        """.trimIndent()
     }
 }

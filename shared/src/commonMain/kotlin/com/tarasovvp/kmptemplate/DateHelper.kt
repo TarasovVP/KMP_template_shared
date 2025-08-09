@@ -1,17 +1,24 @@
 package com.tarasovvp.kmptemplate
 
 import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.format
+import kotlinx.datetime.format.Padding
+import kotlinx.datetime.format.char
 import kotlinx.datetime.toLocalDateTime
 
-
 class DateHelper {
-
     fun getCurrentDate(): String {
-        val now = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
-        val dd = now.date.dayOfMonth.toString().padStart(2, '0')
-        val mm = now.date.monthNumber.toString().padStart(2, '0')
-        val yy = now.date.year.toString()
-        return "$dd-$mm-$yy"
+        val now = Clock.System.now()
+            .toLocalDateTime(TimeZone.currentSystemDefault())
+        val formatter = LocalDate.Format {
+            dayOfMonth(padding = Padding.ZERO)
+            char('-')
+            monthNumber(padding = Padding.ZERO)
+            char('-')
+            year()
+        }
+        return now.date.format(formatter)
     }
 }
