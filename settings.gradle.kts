@@ -15,5 +15,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "KMP_Template"
-include(":androidApp")
 include(":shared")
