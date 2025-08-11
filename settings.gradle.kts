@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KMP_Template"
+rootProject.name = "KMP_template_shared"
 include(":shared")
