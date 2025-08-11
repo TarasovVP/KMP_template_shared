@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.tarasovvp.kmptemplate"
-version = "1.8"
+version = "1.9"
 
 kotlin {
     // Android
@@ -27,9 +27,8 @@ kotlin {
     jvm()
     // Web
     js(IR) {
-        browser {
-            binaries.executable()
-        }
+        binaries.executable()
+        browser()
     }
 
     sourceSets {
