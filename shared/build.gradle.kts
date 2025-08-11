@@ -4,9 +4,14 @@ plugins {
     id("maven-publish")
 }
 
+group = "com.tarasovvp.kmptemplate"
+version = "1.8"
+
 kotlin {
     // Android
-    androidTarget()
+    androidTarget{
+        publishLibraryVariants("release")
+    }
     // iOS
     listOf(
         iosX64(),
@@ -31,9 +36,6 @@ kotlin {
         commonMain.dependencies {
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
         }
-        androidMain.dependencies {
-            api("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
-        }
     }
 }
 
@@ -43,26 +45,22 @@ android {
     defaultConfig {
         minSdk = 24
     }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 publishing {
-    publications {
-        create<MavenPublication>("aar") {
-            groupId = "com.tarasovv.kmptemplate"
-            artifactId = "shared"
-            version = "1.0"
-            artifact("$buildDir/outputs/aar/shared-release.aar")
-            pom.withXml {
-                val dependenciesNode = asNode().appendNode("dependencies")
-                project.configurations.getByName("api").allDependencies.forEach { dependency ->
-                    if (dependency is ExternalModuleDependency) {
-                        val dependencyNode = dependenciesNode.appendNode("dependency")
-                        dependencyNode.appendNode("groupId", dependency.group)
-                        dependencyNode.appendNode("artifactId", dependency.name)
-                        dependencyNode.appendNode("version", dependency.version)
-                    }
-                }
-            }
+    publications.withType<MavenPublication>().configureEach {
+        when (name) {
+            "jvm" -> artifactId = "shared-jvm"
+            "androidRelease" -> artifactId = "shared-android"
         }
+    }
+    repositories {
+        mavenLocal()
     }
 }
