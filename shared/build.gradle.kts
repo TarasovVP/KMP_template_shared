@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     id("org.jetbrains.kotlin.multiplatform") version "2.2.0"
     id("com.android.library") version "8.11.1"
@@ -13,6 +15,7 @@ kotlin {
         publishLibraryVariants("release")
     }
     // iOS
+    val xcf = XCFramework()
     listOf(
         iosX64(),
         iosArm64(),
@@ -21,6 +24,7 @@ kotlin {
         it.binaries.framework {
             baseName = "shared"
             isStatic = true
+            xcf.add(this)
         }
     }
     // Desktop
