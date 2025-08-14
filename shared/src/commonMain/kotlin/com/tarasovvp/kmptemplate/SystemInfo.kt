@@ -6,7 +6,7 @@ class SystemInfo {
 
     fun getInfo(): String {
         return """
-            Hello!
+            Hello from KMP module!
             Platform: ${platformHelper.platformIdentifier}
             Date: ${dateHelper.getCurrentDate()}
         """.trimIndent()
