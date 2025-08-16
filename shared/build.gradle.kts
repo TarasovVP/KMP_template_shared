@@ -7,11 +7,11 @@ plugins {
 }
 
 group = "com.tarasovvp.kmptemplate"
-version = "1.9"
+version = "1.0"
 
 kotlin {
     // Android
-    androidTarget{
+    androidTarget {
         publishLibraryVariants("release")
     }
     // iOS
@@ -48,22 +48,5 @@ android {
     defaultConfig {
         minSdk = 24
     }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
 }
 
-publishing {
-    publications.withType<MavenPublication>().configureEach {
-        when (name) {
-            "jvm" -> artifactId = "shared-jvm"
-            "androidRelease" -> artifactId = "shared-android"
-        }
-    }
-    repositories {
-        mavenLocal()
-    }
-}
