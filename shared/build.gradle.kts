@@ -31,8 +31,15 @@ kotlin {
     jvm()
     // Web
     js(IR) {
-        binaries.executable()
         browser()
+        // Executable bundle (dev/prod)
+        binaries.executable()
+        // Library for npm (ESM)
+        binaries.library()
+        compilerOptions {
+            target = "es2015"
+            generateTypeScriptDefinitions()
+        }
     }
 
     sourceSets {
