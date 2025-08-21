@@ -28,6 +28,13 @@ kotlin {
             xcf.add(this)
         }
     }
+    cocoapods {
+        summary = "Shared KMP module"
+        homepage = "https://github.com/TarasovVP/KMP_Template"
+        framework {
+            baseName = "shared"
+        }
+    }
     // Desktop
     jvm()
     // Web
