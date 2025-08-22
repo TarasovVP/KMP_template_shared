@@ -30,7 +30,7 @@ kotlin {
     }
     cocoapods {
         summary = "Shared KMP module"
-        homepage = "https://github.com/TarasovVP/KMP_Template"
+        homepage = "https://github.com/TarasovVP/KMP_template_shared"
         framework {
             baseName = "shared"
         }
