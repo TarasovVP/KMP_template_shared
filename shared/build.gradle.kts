@@ -29,10 +29,12 @@ kotlin {
         }
     }
     cocoapods {
+        name = "shared"
         summary = "Shared KMP module"
         homepage = "https://github.com/TarasovVP/KMP_template_shared"
         framework {
             baseName = "shared"
+            isStatic = true
         }
     }
     // Desktop
