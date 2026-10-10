@@ -1,19 +1,19 @@
 # KMP_template_shared
 
-Модуль `:shared` (Kotlin 2.2.0, AGP 8.11.1, Gradle 8.13). Таргеты: android (release), iosX64/iosArm64/iosSimulatorArm64 (статический фреймворк `shared`), jvm, js (IR, только `binaries.library()`).
-Правки делай только внутри этого каталога. Публикацию (`publish*`), propagate и коммиты делает оркестратор.
+The `:shared` module (Kotlin 2.2.0, AGP 8.11.1, Gradle 8.13). Targets: android (release), iosX64/iosArm64/iosSimulatorArm64 (static framework `shared`), jvm, js (IR, `binaries.library()` only).
+Edit only inside this directory. Publishing (`publish*`), propagate and commits are done by the orchestrator.
 
-## Каждый новый публичный API проверяй по четырём экспортам
-1. **JS.** Классы из commonMain наружу не видны. Нужен top-level фасад с `@JsExport` в `jsMain`, как `getInfo()` в `SystemInfoFacade.kt`.
-   Если shared получает новую JS-зависимость, её нужно объявить в `KMP_template_web/package.json`, иначе `propagate.sh` упадёт — укажи это в отчёте.
-2. **Swift.** Смотри, как имя и `suspend` выглядят в ObjC-заголовке (`shared/build/XCFrameworks/release/shared.xcframework/ios-arm64/shared.framework/Headers/shared.h` после сборки): `swift_name`, `suspend` превращается в completionHandler/async, значения по умолчанию, sealed-иерархии и generics теряются или меняются.
-3. **Java.** Desktop вызывает `shared-jvm` из Java: параметры по умолчанию требуют `@JvmOverloads`, top-level функции окажутся в классе `<Файл>Kt` (при необходимости `@file:JvmName`).
-4. **Android.** Код в `androidMain`/commonMain, `minSdk` 24, `compileSdk` 36; потребитель берёт `shared-android`.
-В отчёте отметь по каждому из четырёх экспортов: проверено или нет и чем.
+## Check every new public API against the four exports
+1. **JS.** Classes from commonMain are not visible outside. A top-level facade with `@JsExport` in `jsMain` is needed, like `getInfo()` in `SystemInfoFacade.kt`.
+   If shared gains a new JS dependency, it must be declared in `KMP_template_web/package.json`, otherwise `propagate.sh` will fail - mention this in the report.
+2. **Swift.** Check how the name and `suspend` look in the ObjC header (`shared/build/XCFrameworks/release/shared.xcframework/ios-arm64/shared.framework/Headers/shared.h` after a build): `swift_name`, `suspend` becomes a completionHandler/async, default values, sealed hierarchies and generics are lost or changed.
+3. **Java.** Desktop calls `shared-jvm` from Java: default parameters need `@JvmOverloads`, top-level functions end up in a `<File>Kt` class (use `@file:JvmName` if needed).
+4. **Android.** Code in `androidMain`/commonMain, `minSdk` 24, `compileSdk` 36; the consumer uses `shared-android`.
+In the report, mark each of the four exports as verified or not, and by what.
 
-## Сборка (из ~/kmp-agents, всегда через -p)
-- всё: `./KMP_template_shared/gradlew -p KMP_template_shared assemble`
-- XCFramework: `... assembleSharedReleaseXCFramework`; JS-библиотека: `... :shared:jsBrowserProductionLibraryDistribution`
-Тестов в модуле пока нет: проверка — успешный `assemble` и осмотр заголовка/`.d.ts`.
+## Build (from ~/kmp-agents, always with -p)
+- everything: `./KMP_template_shared/gradlew -p KMP_template_shared assemble`
+- XCFramework: `... assembleSharedReleaseXCFramework`; JS library: `... :shared:jsBrowserProductionLibraryDistribution`
+There are no tests in the module yet: verification is a successful `assemble` plus inspecting the header/`.d.ts`.
 
 Canary: SHARED-C6MPYQ
