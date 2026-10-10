@@ -32,8 +32,6 @@ kotlin {
     // Web
     js(IR) {
         browser()
-        // Executable bundle (dev/prod)
-        binaries.executable()
         // Library for npm (ESM)
         binaries.library()
         compilerOptions {
