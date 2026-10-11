@@ -19,3 +19,9 @@ internal actual fun platformDeviceModel(): String {
         else -> "${manufacturer.replaceFirstChar { it.uppercaseChar() }} $model"
     }
 }
+
+// User-visible release (e.g. "14") plus the API level, which is the value apps actually branch on.
+internal actual fun platformOsVersion(): String {
+    val release = runCatching { Build.VERSION.RELEASE }.getOrNull().orEmpty().ifBlank { "unknown" }
+    return "Android $release (API ${Build.VERSION.SDK_INT})"
+}

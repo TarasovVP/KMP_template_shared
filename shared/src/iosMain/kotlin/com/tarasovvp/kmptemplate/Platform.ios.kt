@@ -33,3 +33,10 @@ internal actual fun platformDeviceModel(): String {
     }
     return machine.ifBlank { UIDevice.currentDevice.model }
 }
+
+// System name ("iOS" / "iPadOS") plus its version (e.g. "17.5"), as reported by UIDevice.
+internal actual fun platformOsVersion(): String {
+    val name = UIDevice.currentDevice.systemName().ifBlank { "iOS" }
+    val version = UIDevice.currentDevice.systemVersion.ifBlank { "unknown" }
+    return "$name $version"
+}
