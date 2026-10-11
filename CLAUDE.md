@@ -9,6 +9,10 @@ The public API lives in `shared/src/commonMain`; platform parts are `actual` dec
 - JS library: `./gradlew :shared:jsBrowserProductionLibraryDistribution`
 - Maven artifacts for android/desktop (`shared-android:1.0`, `shared-jvm:1.0`): `./gradlew :shared:publishToMavenLocal`
 
+## CocoaPods
+shared supports CocoaPods through `shared/shared.podspec` (the `cocoapods` block in `shared/build.gradle.kts`) for external consumers. `./gradlew :shared:podspec` regenerates the podspec.
+KMP_template_ios does not use it: it connects shared via SPM (see below).
+
 ## Where shared goes
 The consumer apps (separate repositories next to this one) take it from here:
 android and desktop from `~/.m2`, iOS from a prebuilt XCFramework, web from the JS library directory.
